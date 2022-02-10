@@ -1,6 +1,13 @@
 #! /bin/bash
-echo $1
-openssl sha256 $1 | awk '{print $NF}' > digest
-cmp digest Icon.digest
-# if ($status) ; then echo "Different"; else echo "OK"; fi
+openssl sha256 "$1"
+openssl sha256 "$1" | awk '{print $NF}' > digest
+cmp -s digest $2
+status=$?
+
+if [ $status -ne 0 ] 
+then 
+    echo "$1 - failed verify"
+else 
+    echo "$1 - PASS"
+fi
 

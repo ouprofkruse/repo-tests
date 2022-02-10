@@ -1,4 +1,4 @@
 #! /bin/bash
-./verify.sh Icon.jpg
-./verify.sh Banner.jpg
+./verify.sh Icon.jpg Icon.digest
+./verify.sh Banner.jpg Icon.digest
 
