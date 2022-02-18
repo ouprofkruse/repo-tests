@@ -26,4 +26,11 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run the test script
       #  uses: docker://pxslip/openssl@1.1.1f
-        run: ./test.sh
+        run: |
+          ./test.sh
+          echo $? > status.log
+      - name: Upload status
+        uses: actions/upload-artifact@v2
+        with:
+          name: status-file
+          path: status.log
